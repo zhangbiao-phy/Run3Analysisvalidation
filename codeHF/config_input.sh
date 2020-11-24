@@ -3,7 +3,7 @@
 # Input specification for runtest.sh
 # (Modifies input parameters.)
 
-INPUT_CASE=4  # Input case
+INPUT_CASE=11  # Input case
 NFILESMAX=1   # Maximum number of processed input files. (Set to -0 to process all; to -N to process all but the last N files.)
 
 JSONRUN3="dpl-config_run3.json"  # Run 3 tasks parameters
@@ -62,6 +62,13 @@ case $INPUT_CASE in
   10)
     INPUT_LABEL="Run 5, p-p MC 14 TeV CCBAR, Scenario 2"
     INPUT_DIR="/data/Run5data/CCBAR_1Mevents_scenario2_09112020"
+    INPUT_FILES="AODRun5.*.root"
+    JSON="$JSONRUN5"
+    ISINPUTO2=1
+    ISMC=1;;
+  11)
+    INPUT_LABEL="Run 5, p-p MC 14 TeV CCBAR, Scenario 3 for testing Tree Writing"
+    INPUT_DIR="/data/Run5data/CCBAR_1Mevents_scenario2_23112020_nj_test_tree_writing"
     INPUT_FILES="AODRun5.*.root"
     JSON="$JSONRUN5"
     ISINPUTO2=1

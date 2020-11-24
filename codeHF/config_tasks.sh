@@ -39,7 +39,7 @@ DOO2_TASK_LC=0      # hf-task-lc
 APPLYCUTS_D0=0      # Apply D0 selection cuts.
 APPLYCUTS_LC=0      # Apply Λc selection cuts.
 
-SAVETREES=0         # Save O2 tables to trees.
+SAVETREES=1         # Save O2 tables to trees.
 DEBUG=0             # Print out more information.
 
 MASS=1.8            # Hadron mass (only for comparison plots, not used)
@@ -108,7 +108,7 @@ function MakeScriptO2 {
     [ $DOO2_SKIM -eq 1 ] && { O2TABLES+="AOD/HFSELTRACK/0,AOD/HFTRACKIDXP2/0,AOD/HFTRACKIDXP3/0"; }
     [ $DOO2_CAND_2PRONG -eq 1 ] && { O2TABLES+=",AOD/HFCANDP2BASE/0,AOD/HFCANDP2EXT/0"; [ $ISMC -eq 1 ] && O2TABLES+=",AOD/HFCANDP2MCREC/0,AOD/HFCANDP2MCGEN/0"; }
     [ $DOO2_CAND_3PRONG -eq 1 ] && { O2TABLES+=",AOD/HFCANDP3BASE/0,AOD/HFCANDP3EXT/0"; [ $ISMC -eq 1 ] && O2TABLES+=",AOD/HFCANDP3MCREC/0,AOD/HFCANDP3MCGEN/0"; }
-    [ "$O2TABLES" ] && { O2ARGS+=" --aod-writer-keep $O2TABLES"; } || { MsgWarn "Empty list of tables!"; }
+    [ "$O2TABLES" ] && { O2ARGS+=" --aod-writer-keep AOD/HFCANDP2Full/0 "; } || { MsgWarn "Empty list of tables!"; }
   }
   # Task-specific options
   O2ARGS_QA="$O2ARGS"
@@ -128,6 +128,8 @@ function MakeScriptO2 {
     O2ARGS_CAND_3PRONG+=" --doMC"
     O2ARGS_TASK_D0+=" --doMC"
   }
+
+  O2ARGS_CAND_2PRONG+=" --WriteTree"
 
   # Pair O2 executables with their respective options.
   O2EXEC_QA="o2-analysis-qatask $O2ARGS_QA"
