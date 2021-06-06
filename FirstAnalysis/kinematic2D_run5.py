@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from ROOT import TCanvas, TFile, TLegend, gStyle, gPad
+from ROOT import TCanvas, TFile, gStyle, gPad
 
 
 gStyle.SetOptStat(0)
@@ -15,16 +15,18 @@ gStyle.SetTickLength(-0.02, "y")
 gStyle.SetTitleOffset(1.1, "x")
 gStyle.SetTitleOffset(1.0, "y")
 
+
 def saveCanvas(canvas, title):
     format_list = ["png", ".pdf", ".root"]
     for fileFormat in format_list:
         canvas.SaveAs(title + fileFormat)
 
+
 def kinematic_plots(var1):
     fileo2 = TFile("combine_sig.root")
     cres = TCanvas("cres", "resolution distribution")
     cres.SetCanvasSize(1600, 800)
-    cres.Divide(1,2)
+    cres.Divide(1, 2)
     sig = fileo2.Get("hf-task-jpsi-mc/h%sSig" % var1)
     bkg = fileo2.Get("hf-task-jpsi-mc/h%sBg" % var1)
     cres.cd(1)
@@ -38,8 +40,17 @@ def kinematic_plots(var1):
     saveCanvas(cres, "%s" % var1)
 
 
-
-var_list = ["Chi2PCA", "Ct", "Y", "d0Prong0", "d0Prong1", "d0d0", "declength", "declengthxy", "mass"]
+var_list = [
+    "Chi2PCA",
+    "Ct",
+    "Y",
+    "d0Prong0",
+    "d0Prong1",
+    "d0d0",
+    "declength",
+    "declengthxy",
+    "mass",
+]
 
 for var in var_list:
     kinematic_plots(var)
