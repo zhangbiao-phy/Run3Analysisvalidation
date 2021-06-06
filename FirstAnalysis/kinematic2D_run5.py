@@ -23,8 +23,8 @@ def saveCanvas(canvas, title):
 def kinematic_plots(var1):
     fileo2 = TFile("combine_sig.root")
     cres = TCanvas("cres", "resolution distribution")
-    cres.SetCanvasSize(1500, 700)
-    cres.Divide(2,1)    
+    cres.SetCanvasSize(1600, 800)
+    cres.Divide(2,1)
     sig = fileo2.Get("hf-task-jpsi-mc/h%sSig" % var1)
     bkg = fileo2.Get("hf-task-jpsi-mc/h%sBg" % var1)
     cres.cd(1)
@@ -43,5 +43,3 @@ var_list = ["Chi2PCA", "Ct", "Y", "d0Prong0", "d0Prong1", "d0d0", "declength", "
 
 for var in var_list:
     kinematic_plots(var)
-
-
