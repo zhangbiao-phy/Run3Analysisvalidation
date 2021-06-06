@@ -24,7 +24,7 @@ def kinematic_plots(var1):
     fileo2 = TFile("combine_sig.root")
     cres = TCanvas("cres", "resolution distribution")
     cres.SetCanvasSize(1600, 800)
-    cres.Divide(2,1)
+    cres.Divide(1,2)
     sig = fileo2.Get("hf-task-jpsi-mc/h%sSig" % var1)
     bkg = fileo2.Get("hf-task-jpsi-mc/h%sBg" % var1)
     cres.cd(1)
